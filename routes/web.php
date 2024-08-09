@@ -16,7 +16,12 @@ Route::controller(PelaporanController::class)->prefix('pelaporan')->group( funct
     Route::get('','index')->name('pelaporan');
 });
 
-Route::post('/posting', [App\Http\Controllers\PelaporanController::class, 'upload']);
+Route::post('/pelaporan/posting', [App\Http\Controllers\PelaporanController::class, 'upload']);
+
+
+Route::post('/claim/posting', [App\Http\Controllers\ClaimController::class, 'upload']);
+Route::post('/claim/update/{id}', [ClaimController::class, 'update']);
+
 
 Route::controller(ClaimController::class)->prefix('claim')->group( function(){
     Route::get('','index')->name('claim');
