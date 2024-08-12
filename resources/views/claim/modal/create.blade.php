@@ -1,5 +1,5 @@
-
-<form id="claimForm" action="/claim/posting" method="post" enctype="multipart/form-data">
+{{-- saya menambahkan file baru,sesuaikan nama file nya --}}
+<form id="claimForm" action="{{ url('/claim/upload') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal fade text-left" id="ModalCreate" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -37,62 +37,76 @@
                     </div>
 
                     <input type="hidden" name="status" id="status" value="">
-                    <input type="hidden" name="claim_id" id="claim_id" value="">
+                    <input type="hidden" name="id" id="claim_id" value="">
 
-                    <div>
+                    <div class="mb-3">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>dokumen</th>
-                                    <th>upload</th>
+                                    <th>Dokumen</th>
+                                    <th>Nama File</th>
+                                    <th>Upload</th>
                                 </tr>
                             </thead>
-                            <tbody id="fileTable">
+                            <tbody>
                                 <tr>
-                                    <td>fpp</td>
-                                    <td><input type="file" name="fpp" onchange="encodeFile(this, 'fpp')" /></td>
+                                    <td>FPP</td>
+                                    <td id="fpp_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="fpp_file" id="fpp_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>kwitansi</td>
-                                    <td><input type="file" name="kwitansi" onchange="encodeFile(this, 'kwitansi')" /></td>
+                                    <td>Kwitansi</td>
+                                    <td id="kwitansi_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="kwitansi_file" id="kwitansi_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>taspen 3</td>
-                                    <td><input type="file" name="taspen_3" onchange="encodeFile(this, 'taspen_3')" /></td>
+                                    <td>Taspen 3</td>
+                                    <td id="taspen_3_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="taspen_3_file" id="taspen_3_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>rincian tagihan</td>
-                                    <td><input type="file" name="rincian_tagihan" onchange="encodeFile(this, 'rincian_tagihan')" /></td>
+                                    <td>Rincian Tagihan</td>
+                                    <td id="rincian_tagihan_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="rincian_tagihan_file" id="rincian_tagihan_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>resume medis</td>
-                                    <td><input type="file" name="resume_medis" onchange="encodeFile(this, 'resume_medis')" /></td>
+                                    <td>Resume Medis</td>
+                                    <td id="resume_medis_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="resume_medis_file" id="resume_medis_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>pemeriksaan labor</td>
-                                    <td><input type="file" name="pemeriksaan_labor" onchange="encodeFile(this, 'pemeriksaan_labor')" /></td>
+                                    <td>Pemeriksaan Labor</td>
+                                    <td id="pemeriksaan_labor_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="pemeriksaan_labor_file" id="pemeriksaan_labor_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>bacaan pemeriksaan radiologi</td>
-                                    <td><input type="file" name="bacaan_pemeriksaan_radiologi" onchange="encodeFile(this, 'bacaan_pemeriksaan_radiologi')" /></td>
+                                    <td>Bacaan Pemeriksaan Radiologi</td>
+                                    <td id="bacaan_pemeriksaan_radiologi_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="bacaan_pemeriksaan_radiologi_file" id="bacaan_pemeriksaan_radiologi_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>salinan laporan operasi</td>
-                                    <td><input type="file" name="salinan_laporan_operasi" onchange="encodeFile(this, 'salinan_laporan_operasi')" /></td>
+                                    <td>Salinan Laporan Operasi</td>
+                                    <td id="salinan_laporan_operasi_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="salinan_laporan_operasi_file" id="salinan_laporan_operasi_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>surat jaminan jasa raharja</td>
-                                    <td><input type="file" name="surat_jaminan_jasa_raharja" onchange="encodeFile(this, 'surat_jaminan_jasa_raharja')" /></td>
+                                    <td>Surat Jaminan Jasa Raharja</td>
+                                    <td id="surat_jaminan_jasa_raharja_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="surat_jaminan_jasa_raharja_file" id="surat_jaminan_jasa_raharja_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>surat keterangan platform jasa raharja</td>
-                                    <td><input type="file" name="surat_keterangan_platform_jasa_raharja" onchange="encodeFile(this, 'surat_keterangan_platform_jasa_raharja')" /></td>
+                                    <td>Surat Keterangan Platform Jasa Raharja</td>
+                                    <td id="surat_keterangan_platform_jasa_raharja_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="surat_keterangan_platform_jasa_raharja_file" id="surat_keterangan_platform_jasa_raharja_file" /></td>
                                 </tr>
                                 <tr>
-                                    <td>dokumen pendukung lainnya</td>
-                                    <td><input type="file" name="dokumen_pendukung_lainnya" onchange="encodeFile(this, 'dokumen_pendukung_lainnya')" /></td>
+                                    <td>Dokumen Pendukung Lainnya</td>
+                                    <td id="dokumen_pendukung_lainnya_file_name">Tidak ada file yang dipilih</td>
+                                    <td><input type="file" name="dokumen_pendukung_lainnya_file" id="dokumen_pendukung_lainnya_file" /></td>
                                 </tr>
+                                <!-- Tambahkan baris lain sesuai kebutuhan -->
                             </tbody>
+                            
                         </table>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="submit" class="btn btn-primary mr-2" onclick="setStatus('send')">
@@ -113,26 +127,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-function encodeFile(input, fieldName) {
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            const base64String = reader.result.split(',')[1]; // Get base64 string from the result
-            let hiddenInput = document.querySelector(`input[name="${fieldName}"]`);
-            if (!hiddenInput) {
-                hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = fieldName;
-                document.getElementById('claimForm').appendChild(hiddenInput);
-            }
-            hiddenInput.value = base64String;
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian) {
+function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian, fpp, kwitansi, taspen_3,rincian_tagihan,resume_medis,bacaan_pemeriksaan_radiologi,salinan_laporan_operasi,surat_jaminan_jasa_raharja,surat_keterangan_platform_jasa_raharja,dokumen_pendukung_lainnya) {
     document.getElementById('claim_id').value = id;
     document.getElementById('nip').value = nip;
     document.getElementById('nama').value = nama;
@@ -141,6 +136,21 @@ function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian) {
     document.getElementById('diagnosa').value = diagnosa;
     document.getElementById('tgl_kejadian').value = tgl_kejadian;
     document.getElementById('status').value = 'draft';
+  
+    // Update nama file
+    document.getElementById('fpp_file_name').innerHTML = fpp ? `<a href="/claim/download/${id}/fpp" target="_blank">FPP.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('kwitansi_file_name').innerHTML = kwitansi ? `<a href="/claim/download/${id}/kwitansi" target="_blank">Kwitansi.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('taspen_3_file_name').innerHTML = taspen_3 ? `<a href="/claim/download/${id}/taspen_3" target="_blank">Taspen 3.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('rincian_tagihan_file_name').innerHTML = rincian_tagihan ? `<a href="/claim/download/${id}/rincian_tagihan" target="_blank">rincian tagihan.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('resume_medis_file_name').innerHTML = resume_medis ? `<a href="/claim/download/${id}/resume_medis" target="_blank">resume medis.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('pemeriksaan_labor_file_name').innerHTML = resume_medis ? `<a href="/claim/download/${id}/pemeriksaan_labor" target="_blank">resume medis.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('bacaan_pemeriksaan_radiologi_file_name').innerHTML = bacaan_pemeriksaan_radiologi ? `<a href="/claim/download/${id}/bacaan_pemeriksaan_radiologi" target="_blank">bacaan_pemeriksaan_radiologi.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('salinan_laporan_operasi_file_name').innerHTML = salinan_laporan_operasi ? `<a href="/claim/download/${id}/salinan_laporan_operasi" target="_blank">salinan_laporan_operasi.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('surat_jaminan_jasa_raharja_file_name').innerHTML = surat_jaminan_jasa_raharja ? `<a href="/claim/download/${id}/surat_jaminan_jasa_raharja" target="_blank">surat_jaminan_jasa_raharja.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('surat_keterangan_platform_jasa_raharja_file_name').innerHTML = surat_keterangan_platform_jasa_raharja ? `<a href="/claim/download/${id}/surat_keterangan_platform_jasa_raharja" target="_blank">surat_keterangan_platform_jasa_raharja.pdf</a>` : 'Tidak ada file yang dipilih';
+    document.getElementById('dokumen_pendukung_lainnya_file_name').innerHTML = dokumen_pendukung_lainnya ? `<a href="/claim/download/${id}/dokumen_pendukung_lainnya" target="_blank">dokumen_pendukung_lainnya.pdf</a>` : 'Tidak ada file yang dipilih';
+
+    
 }
 
 function setStatus(status) {
