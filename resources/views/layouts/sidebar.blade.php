@@ -33,6 +33,26 @@
             </div>
         </div>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="/proses">
+            <i class="fas fa-fw fa-spinner fa-spin"></i>
+            <span>Proses</span>
+        </a>
+    </li>
+    
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="/bms">
+            <i class="fas fa-fw fa-times"></i>
+            <span>BMS</span>
+        </a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="/ms">
+            <i class="fas fa-fw fa-check"></i> 
+            <span>MS</span>
+        </a>
+    </li>
+    
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">

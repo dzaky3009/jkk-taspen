@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\ClaimController;
-
+use App\Http\Controllers\prosesController;
+use App\Http\Controllers\bmsController;
+use App\Http\Controllers\mscontroller;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -26,4 +28,17 @@ Route::post('/claim/upload', [ClaimController::class, 'upload'])->name('claim.st
 
 Route::controller(ClaimController::class)->prefix('claim')->group( function(){
     Route::get('','index')->name('claim');
+});
+
+Route::controller(prosesController::class)->prefix('proses')->group(function () {
+    Route::get('/', 'index')->name('proses');
+});
+Route::post('/proses/upload', [prosesController::class, 'upload'])->name('proses.store');
+
+Route::controller(bmsController::class)->prefix('bms')->group(function () {
+    Route::get('/', 'index')->name('bms');
+});
+
+Route::controller(msController::class)->prefix('ms')->group(function () {
+    Route::get('/', 'index')->name('ms');
 });

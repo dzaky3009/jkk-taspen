@@ -21,12 +21,12 @@
                         <th>DIAGNOSA</th>
                         <th>TGL.KEJADIAN</th>
                         <th>STATUS</th>
-                        {{-- <th>FILE</th> --}}
+                        <th>AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php($no = 1)
-                    @foreach ($claim as $row)
+                    @foreach ($proses as $row)
                         <tr>
                             <th>{{ $no++ }}</th>
                             <td>{{ $row->nip }}</td>
@@ -36,22 +36,35 @@
                             <td>{{ $row->diagnosa }}</td>
                             <td>{{ $row->tgl_kejadian }}</td>
                             <td>
-                                @if ($row->status != 'draft')
-                                    <button class="btn btn-success">
+                                @if ($row->status == 'send')
+                                    <button class="btn btn-warning">
                                         <i class="fas fa-check"></i>
-                                        Send
+                                        Diproses
                                     </button>
-                                @elseif ($row->status == 'draft')
-                                    <button class="btn btn-warning"
-                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
-                                        data-toggle="modal" data-target="#ModalCreate">
-                                        <i class="fa fa-pencil-alt"></i>
-                                        DRAFT
+                                    @elseif  ($row->status == 'belum memenuhi syarat')
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-times"></i>
+                                        BMS
                                     </button>
+                                @elseif ($row->status == 'memenuhi syarat')
+                                    <button class="btn btn-success">
+                                        <i class="fa fa-check"></i>
+                                        MS
+                                    </button>
+         
+                                
                                 @else
                                     <span class="badge badge-secondary">UNKNOWN</span>
                                 @endif
                             </td>
+                            <TD>
+                                <button class="btn btn-warning"
+                                onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                data-toggle="modal" data-target="#ModalCreate">
+                                <i class="fa fa-pencil-alt"></i>
+                                AKSI
+                            </button>
+                            </TD>
                             {{-- <td>
                                 @if($row->fpp)
                                     <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'fpp']) }}" target="_blank">Lihat FPP</a>
@@ -71,6 +84,6 @@
     </div>
 </div>
 
-@include('claim.modal.create')
+@include('proses.modal.create')
 
 @endsection
