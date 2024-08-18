@@ -6,6 +6,8 @@ use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\prosesController;
 use App\Http\Controllers\bmsController;
 use App\Http\Controllers\mscontroller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -42,3 +44,13 @@ Route::controller(bmsController::class)->prefix('bms')->group(function () {
 Route::controller(msController::class)->prefix('ms')->group(function () {
     Route::get('/', 'index')->name('ms');
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+// Route to handle the form submission
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');

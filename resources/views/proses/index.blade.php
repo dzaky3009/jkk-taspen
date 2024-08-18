@@ -5,10 +5,10 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-body">
-        <a href="#" class="btn btn-warning mb-4" data-toggle="modal" data-target="#ModalCreate">
+        {{-- <a href="#" class="btn btn-warning mb-4" data-toggle="modal" data-target="#ModalCreate">
             <i class="fa fa-plus"></i>
             CLAIM BARU
-        </a>
+        </a> --}}
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -50,8 +50,7 @@
                                     <button class="btn btn-success">
                                         <i class="fa fa-check"></i>
                                         MS
-                                    </button>
-         
+                                    </button>   
                                 
                                 @else
                                     <span class="badge badge-secondary">UNKNOWN</span>

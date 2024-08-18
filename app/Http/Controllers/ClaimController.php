@@ -33,10 +33,6 @@ class ClaimController extends Controller
             'surat_jaminan_jasa_raharja_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'surat_keterangan_platform_jasa_raharja_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'dokumen_pendukung_lainnya_file' => 'nullable|file|mimes:pdf,jpeg,png',
-            
-    
-            
-            
         ]);
 
         $claim = $request->id ? Claim::find($request->id) : new Claim();
