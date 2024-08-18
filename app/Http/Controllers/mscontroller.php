@@ -8,7 +8,18 @@ class mscontroller extends Controller
 {
     public function index()
     {
-        $proses = Claim::where('status', '=', 'memenuhi syarat')->get();
+       
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            $proses = Claim::where('status', '=', 'memenuhi syarat')->get();
+        } else {
+            $proses = Claim::where('status', '=', 'memenuhi syarat')
+                          ->where('id_user', $user->id)
+                          ->get();
+        }
+    
         return view('proses.index', ['proses' => $proses]);
+
     }
 }

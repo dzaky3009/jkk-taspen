@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('no_hp')->nullable();
             $table->text('diagnosa')->nullable();
             $table->text('kronologi')->nullable();
+            $table->text('id_user')->nullable();
             $table->timestamps();
         });
     }

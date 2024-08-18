@@ -7,13 +7,26 @@ use Illuminate\Http\Request;
 
 class prosesController extends Controller
 {
+
     public function index()
     {
-
-        $proses = Claim::where('status', '!=', 'draft')->get();
-        
+        // Dapatkan user yang sedang auth
+        $user = auth()->user();
+    
+        // Periksa role user
+        if ($user->role === 'admin') {
+            // Jika role adalah admin, ambil semua data claim dengan status bukan draft
+            $proses = Claim::where('status', '!=', 'draft')->get();
+        } else {
+            // Jika role adalah user, ambil hanya data claim yang user_id-nya sama dengan ID user yang sedang auth dan status bukan draft
+            $proses = Claim::where('status', '!=', 'draft')
+                          ->where('id_user', $user->id)
+                          ->get();
+        }
+    
         return view('proses.index', ['proses' => $proses]);
     }
+    
     public function upload(Request $request)
     {
         $request->validate([

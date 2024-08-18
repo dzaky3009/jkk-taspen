@@ -9,10 +9,21 @@ class ClaimController extends Controller
 {
     public function index()
     {
-        $claim = Claim::all();
+        // Dapatkan user yang sedang auth
+        $user = auth()->user();
+    
+        // Periksa role user
+        if ($user->role === 'admin') {
+            // Jika role adalah admin, tampilkan semua claim
+            $claim = Claim::all();
+        } else {
+            // Jika role adalah user, tampilkan hanya claim yang user_id-nya sama dengan ID user
+            $claim = Claim::where('id_user', $user->id)->get();
+        }
+    
         return view('claim.index', ['claim' => $claim]);
     }
-
+    
     public function upload(Request $request)
     {
         $request->validate([
@@ -43,6 +54,8 @@ class ClaimController extends Controller
         $claim->diagnosa = $request->diagnosa;
         $claim->tgl_kejadian = $request->tgl_kejadian;
         $claim->status = $request->status;
+
+        $claim->id_user=auth()->id();
 
         // Handle file uploads
         if ($request->hasFile('fpp_file')) {

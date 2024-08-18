@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('diagnosa')->nullable();
             $table->date('tgl_kejadian')->nullable();
             $table->string('status')->nullable();
+            $table->string('id_user')->nullable();
             
             // Kolom untuk file dalam format base64, menggunakan binary
             $table->binary('fpp')->nullable();

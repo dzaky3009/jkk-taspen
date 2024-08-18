@@ -26,14 +26,15 @@
                             </div>
                             <form class="user" method="POST" action="{{ route('register.store') }}">
                                 @csrf
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                <div class="form-group ">
+           
                                         <input type="text" name="name" class="form-control form-control-user" placeholder="Full Name" required>
-                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control form-control-user" placeholder="Email Address" required>
                                 </div>
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" name="password" class="form-control form-control-user" placeholder="Password" required>
@@ -41,17 +42,13 @@
                                     <div class="col-sm-6">
                                         <input type="text" name="role" class="form-control form-control-user" placeholder="Role" required>
                                     </div>
+                                    
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+
+                               
                             </form>
                             <hr>
                             <div class="text-center">

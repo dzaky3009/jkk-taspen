@@ -21,7 +21,9 @@
                         <th>DIAGNOSA</th>
                         <th>TGL.KEJADIAN</th>
                         <th>STATUS</th>
-                        <th>AKSI</th>
+                        @if(auth()->user()->role === 'admin')
+                            <th>AKSI</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -38,10 +40,10 @@
                             <td>
                                 @if ($row->status == 'send')
                                     <button class="btn btn-warning">
-                                        <i class="fas fa-check"></i>
+                                        {{-- <i class="fas fa-check"></i> --}}
                                         Diproses
                                     </button>
-                                    @elseif  ($row->status == 'belum memenuhi syarat')
+                                @elseif ($row->status == 'belum memenuhi syarat')
                                     <button class="btn btn-danger">
                                         <i class="fa fa-times"></i>
                                         BMS
@@ -51,30 +53,20 @@
                                         <i class="fa fa-check"></i>
                                         MS
                                     </button>   
-                                
                                 @else
                                     <span class="badge badge-secondary">UNKNOWN</span>
                                 @endif
                             </td>
-                            <TD>
+                            @if(auth()->user()->role === 'admin')
+                            <td>
                                 <button class="btn btn-warning"
-                                onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
-                                data-toggle="modal" data-target="#ModalCreate">
-                                <i class="fa fa-pencil-alt"></i>
-                                AKSI
-                            </button>
-                            </TD>
-                            {{-- <td>
-                                @if($row->fpp)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'fpp']) }}" target="_blank">Lihat FPP</a>
-                                @endif
-                                @if($row->kwitansi)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'kwitansi']) }}" target="_blank">Lihat Kwitansi</a>
-                                @endif
-                                @if($row->taspen_3)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'taspen_3']) }}" target="_blank">Lihat Taspen 3</a>
-                                @endif
-                            </td> --}}
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                    data-toggle="modal" data-target="#ModalCreate">
+                                    <i class="fa fa-pencil-alt"></i>
+                                    AKSI
+                                </button>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
