@@ -21,8 +21,9 @@ return new class extends Migration
             $table->date('tgl_kejadian')->nullable();
             $table->string('status')->nullable();
             $table->string('id_user')->nullable();
-            
+            $table->text('note')->nullable();
             // Kolom untuk file dalam format base64, menggunakan binary
+            $table->binary('surat_jaminan')->nullable();
             $table->binary('fpp')->nullable();
             $table->binary('kwitansi')->nullable();
             $table->binary('taspen_3')->nullable();

@@ -50,6 +50,12 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Surat Jaminan </td>
+                                    <td id="surat_jaminan_file_name">Tidak ada file</td>          
+                                    <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td>
+
+                                </tr>
+                                <tr>
                                     <td>FPP</td>
                                     <td id="fpp_file_name">Tidak ada file yang dipilih</td>
                                     <td><input type="file" name="fpp_file" id="fpp_file" /></td>
@@ -127,7 +133,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian, fpp, kwitansi, taspen_3,rincian_tagihan,resume_medis,bacaan_pemeriksaan_radiologi,salinan_laporan_operasi,surat_jaminan_jasa_raharja,surat_keterangan_platform_jasa_raharja,dokumen_pendukung_lainnya) {
+function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian,surat_jaminan, fpp, kwitansi, taspen_3,rincian_tagihan,resume_medis,bacaan_pemeriksaan_radiologi,salinan_laporan_operasi,surat_jaminan_jasa_raharja,surat_keterangan_platform_jasa_raharja,dokumen_pendukung_lainnya) {
     document.getElementById('claim_id').value = id;
     document.getElementById('nip').value = nip;
     document.getElementById('nama').value = nama;
@@ -138,6 +144,7 @@ function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian, fpp, 
     document.getElementById('status').value = 'draft';
   
     // Update nama file
+    document.getElementById('surat_jaminan_file_name').innerHTML = surat_jaminan ? `<a href="/claim/download/${id}/surat_jaminan" target="_blank">surat_jaminan.pdf</a>` : 'Tidak ada file yang dipilih';
     document.getElementById('fpp_file_name').innerHTML = fpp ? `<a href="/claim/download/${id}/fpp" target="_blank">FPP.pdf</a>` : 'Tidak ada file yang dipilih';
     document.getElementById('kwitansi_file_name').innerHTML = kwitansi ? `<a href="/claim/download/${id}/kwitansi" target="_blank">Kwitansi.pdf</a>` : 'Tidak ada file yang dipilih';
     document.getElementById('taspen_3_file_name').innerHTML = taspen_3 ? `<a href="/claim/download/${id}/taspen_3" target="_blank">Taspen 3.pdf</a>` : 'Tidak ada file yang dipilih';

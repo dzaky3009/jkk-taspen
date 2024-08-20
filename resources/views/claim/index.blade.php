@@ -53,21 +53,29 @@
                             <td>{{ $row->diagnosa }}</td>
                             <td>{{ $row->tgl_kejadian }}</td>
                             <td>
-                                @if ($row->status != 'draft')
-                                    <button class="btn btn-success">
-                                        <i class="fas fa-check"></i>
-                                        Send
-                                    </button>
-                                @elseif ($row->status == 'draft')
-                                    <button class="btn btn-warning"
-                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya }}')"
-                                        data-toggle="modal" data-target="#ModalCreate">
-                                        <i class="fa fa-pencil-alt"></i>
-                                        DRAFT
-                                    </button>
-                                @else
-                                    <span class="badge badge-secondary">UNKNOWN</span>
-                                @endif
+                                @if ($row->status == 'draft')
+                                <button class="btn btn-warning"
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
+                                    data-toggle="modal" data-target="#ModalCreate">
+                                    <i class="fa fa-pencil-alt"></i>
+                                    DRAFT
+                                </button>
+                            @elseif ($row->status == 'belum memenuhi syarat')
+                            <button class="btn btn-warning"
+                            onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
+                            data-toggle="modal" data-target="#ModalCreate">
+                            <i class="fa fa-pencil-alt"></i>
+                            DRAFT
+                        </button>
+                            @elseif ($row->status != 'draft')
+                                <button class="btn btn-success">
+                                    <i class="fas fa-check"></i>
+                                    Send
+                                </button>
+                            @else
+                                <span class="badge badge-secondary">UNKNOWN</span>
+                            @endif
+                            
                             </td>
                         </tr>
                     @endforeach
