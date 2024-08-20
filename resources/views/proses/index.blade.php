@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Claim')
+@section('title', 'Data Dalam Proses')
 
 @section('content')
 <div class="card shadow mb-4">
@@ -39,7 +39,7 @@
                             <td>{{ $row->tgl_kejadian }}</td>
                             <td>
                                 @if ($row->status == 'send')
-                                    <button class="btn btn-warning">
+                                    <button class="btn btn-info">
                                         {{-- <i class="fas fa-check"></i> --}}
                                         Diproses
                                     </button>
@@ -59,7 +59,7 @@
                             </td>
                             @if(auth()->user()->role === 'admin')
                             <td>
-                                <button class="btn btn-warning"
+                                <button class="btn btn-info"
                                     onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
                                     data-toggle="modal" data-target="#ModalCreate">
                                     <i class="fa fa-pencil-alt"></i>

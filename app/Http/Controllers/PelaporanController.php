@@ -22,6 +22,13 @@ class PelaporanController extends Controller
             'no_hp' => 'required',
             'diagnosa' => 'required',
             'kronologi' => 'required',
+        ],[
+            'nip.required'=>'NIP tidak boleh kosong',
+            'nama.required'=>'Nama tidak boleh kosong',
+            'instansi.required'=>'Instansi tidak boleh kosong',
+            'no_hp.required'=>'NO HP tidak boleh kosong',
+            'diagnosa.required'=>'Diagnosa tidak boleh kosong',
+            'kronologi.required'=>'Kronologi tidak boleh kosong',
         ]);
 
         $pelaporan = new Pelaporan();
