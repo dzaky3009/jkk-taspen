@@ -16,7 +16,7 @@ class PelaporanController extends Controller
         } else {
             $pelaporan = Pelaporan::where('id_user', $user->id)->get();
         }
-    
+   
         return view('pelaporan.index', ['pelaporan' => $pelaporan]);
     }
     
@@ -31,7 +31,15 @@ class PelaporanController extends Controller
         'diagnosa' => 'required',
         'kronologi' => 'required',
         'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
-    ]);
+    ],[
+            'nip.required'=>'NIP tidak boleh kosong',
+            'nama.required'=>'Nama tidak boleh kosong',
+            'instansi.required'=>'Instansi tidak boleh kosong',
+            'no_hp.required'=>'NO HP tidak boleh kosong',
+            'diagnosa.required'=>'Diagnosa tidak boleh kosong',
+            'kronologi.required'=>'Kronologi tidak boleh kosong',
+            'surat_jaminan_file.required'=>'surat_jaminan_file tidak boleh kosong',
+        ]);
 
     // Jika ID ada, cari data yang akan diupdate, jika tidak buat baru
     $pelaporan = $request->id ? Pelaporan::find($request->id) : new Pelaporan();
@@ -61,6 +69,7 @@ class PelaporanController extends Controller
 
     public function download($id, $fileType)
     {
+
         $pelaporan = Pelaporan::find($id);
         
         if (!$pelaporan) {
@@ -81,6 +90,7 @@ class PelaporanController extends Controller
             ->header('Content-Type', 'application/pdf') // Sesuaikan Content-Type jika bukan PDF
             ->header('Content-Disposition', "inline; filename=\"$fileName\"")
             ->header('Content-Transfer-Encoding', 'binary');
+
     }
     private function getFileName($fileType)
 {

@@ -12,28 +12,61 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nip">NIP</label>
-                        <input type="text" name="nip" class="form-control" id="nip">
+                        <input type="text" name="nip" class="form-control @error("nip") is-invalid @enderror" id="nip">
+                        @error('nip')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama">NAMA</label>
-                        <input type="text" name="nama" class="form-control" id="nama">
+                        <input type="text" name="nama" class="form-control @error("nama") is-invalid @enderror" id="nama">
+                        @error('nama')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="instansi">INSTANSI</label>
-                        <input type="text" name="instansi" class="form-control" id="instansi">
+                        <input type="text" name="instansi" class="form-control @error("instansi") is-invalid @enderror" id="instansi">
+                        @error('instansi')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="no_hp">NO HP</label>
-                        <input type="text" name="no_hp" class="form-control" id="no_hp">
+                        <input type="text" name="no_hp" class="form-control @error("no_hp") is-invalid @enderror" id="no_hp">
+                        @error('no_hp')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="diagnosa">DIAGNOSA</label>
-                        <input type="text" name="diagnosa" class="form-control" id="diagnosa">
+                        <input type="text" name="diagnosa" class="form-control @error("diagnosa") is-invalid @enderror" id="diagnosa">
+                        @error('diagnosa')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                    
                     <div class="mb-3">
                         <label for="kronologi">KRONOLOGI</label>
-                        <textarea name="kronologi" id="kronologi"  class="form-control" cols="88" rows="10"></textarea>
+
+                        <textarea name="kronologi" id="kronologi" cols="88" rows="10" class="@error("kronologi") is-invalid @enderror"></textarea>
+                        @error('kronologi')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+
                     </div>
                     
                     
