@@ -34,6 +34,8 @@ class ClaimController extends Controller
             'diagnosa' => 'required',
             'tgl_kejadian' => 'required',
             'status' => 'required',
+            'note' => 'nullable|string',
+            'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'fpp_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'kwitansi_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'taspen_3_file' => 'nullable|file|mimes:pdf,jpeg,png',
@@ -54,10 +56,17 @@ class ClaimController extends Controller
         $claim->diagnosa = $request->diagnosa;
         $claim->tgl_kejadian = $request->tgl_kejadian;
         $claim->status = $request->status;
+        $claim->note = $request->note;
 
-        $claim->id_user=auth()->id();
+        if (!$request->id) {
+            $claim->id_user = auth()->id();
+        }
 
         // Handle file uploads
+        if ($request->hasFile('surat_jaminan_file')) {
+            $claim->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
+        }
+    
         if ($request->hasFile('fpp_file')) {
             $claim->fpp = base64_encode(file_get_contents($request->file('fpp_file')->path()));
         }

@@ -35,6 +35,7 @@ class prosesController extends Controller
             'instansi' => 'required',
             'no_hp' => 'required',
             'diagnosa' => 'required',
+            'note' => 'nullable|string',
             'tgl_kejadian' => 'required',
             'status' => 'required',
             'fpp_file' => 'nullable|file|mimes:pdf,jpeg,png',
@@ -61,6 +62,7 @@ class prosesController extends Controller
         $claim->diagnosa = $request->diagnosa;
         $claim->tgl_kejadian = $request->tgl_kejadian;
         $claim->status = $request->status;
+        $claim->note = $request->note;
 
         // Handle file uploads
         if ($request->hasFile('fpp_file')) {

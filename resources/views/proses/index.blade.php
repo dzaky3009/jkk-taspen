@@ -44,10 +44,13 @@
                                         Diproses
                                     </button>
                                 @elseif ($row->status == 'belum memenuhi syarat')
-                                    <button class="btn btn-danger">
+                                    <button class="btn btn-danger"
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                    data-toggle="modal" data-target="#ModalCreate">
+                        
                                         <i class="fa fa-times"></i>
-                                        BMS
-                                    </button>
+                                    bms
+                                </button>
                                 @elseif ($row->status == 'memenuhi syarat')
                                     <button class="btn btn-success">
                                         <i class="fa fa-check"></i>
@@ -59,8 +62,9 @@
                             </td>
                             @if(auth()->user()->role === 'admin')
                             <td>
-                                <button class="btn btn-info"
-                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+
+                                <button class="btn btn-warning"
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
                                     data-toggle="modal" data-target="#ModalCreate">
                                     <i class="fa fa-pencil-alt"></i>
                                     AKSI
