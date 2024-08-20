@@ -35,6 +35,6 @@ class PelaporanController extends Controller
         // $pelaporan->user_id = auth()->user()->id;
         $pelaporan->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Laporan Berhasil Ditambahkan');
     }
 }

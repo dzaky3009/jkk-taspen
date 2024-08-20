@@ -5,6 +5,23 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-body">
+        @if(session('success'))
+    <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="false">&times;</span>
+        </button>
+    </div>
+    <script>
+        setTimeout(function() {
+            var alertElement = document.getElementById('successAlert');
+            if (alertElement) {
+                var bootstrapAlert = new bootstrap.Alert(alertElement);
+                bootstrapAlert.close();
+            }
+        }, 2500); 
+    </script>
+    @endif
         <a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#ModalCreate">
             <i class="fa fa-plus">    
             </i>

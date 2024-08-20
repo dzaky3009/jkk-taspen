@@ -5,6 +5,24 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-body">
+        @if(session('success'))
+            <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+            </div>
+            <script>
+                setTimeout(function() {
+                    var alertElement = document.getElementById('successAlert');
+                    if (alertElement) {
+                        var bootstrapAlert = new bootstrap.Alert(alertElement);
+                        bootstrapAlert.close();
+                    }
+                }, 2500); 
+            </script>
+        @endif
+
         <a href="#" class="btn btn-warning mb-4" data-toggle="modal" data-target="#ModalCreate">
             <i class="fa fa-plus"></i>
             CLAIM BARU
@@ -21,7 +39,6 @@
                         <th>DIAGNOSA</th>
                         <th>TGL.KEJADIAN</th>
                         <th>STATUS</th>
-                        {{-- <th>FILE</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +60,7 @@
                                     </button>
                                 @elseif ($row->status == 'draft')
                                     <button class="btn btn-warning"
-                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya }}')"
                                         data-toggle="modal" data-target="#ModalCreate">
                                         <i class="fa fa-pencil-alt"></i>
                                         DRAFT
@@ -52,17 +69,6 @@
                                     <span class="badge badge-secondary">UNKNOWN</span>
                                 @endif
                             </td>
-                            {{-- <td>
-                                @if($row->fpp)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'fpp']) }}" target="_blank">Lihat FPP</a>
-                                @endif
-                                @if($row->kwitansi)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'kwitansi']) }}" target="_blank">Lihat Kwitansi</a>
-                                @endif
-                                @if($row->taspen_3)
-                                    <a href="{{ route('claim.file', ['id' => $row->id, 'type' => 'taspen_3']) }}" target="_blank">Lihat Taspen 3</a>
-                                @endif
-                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
