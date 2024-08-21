@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Claim;
 use Illuminate\Http\Request;
+use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Notification;
 
 class ClaimController extends Controller
 {
@@ -104,6 +106,8 @@ class ClaimController extends Controller
         
 
         $claim->save();
+        $admins = User::where('role', 'admin')->get();
+    Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
 
         return redirect()->back()->with('success', 'Claim Berhasil Ditambahkan');
     }

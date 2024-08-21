@@ -1,4 +1,4 @@
-<form id="claimForm" action="{{ url('/claim/upload') }}" method="post" enctype="multipart/form-data">
+<form id="claimForm" action="{{ url('/proses/upload') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal fade text-left" id="ModalCreate" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

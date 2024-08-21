@@ -72,7 +72,7 @@
                     
                     <input type="hidden" name="id" id="claim_id" value="">
 
-                    <div class="mb-3">
+                    <div class="mb-3">          @if (auth()->user()->role === 'admin')
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -82,17 +82,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                      
                                 <tr>
                                     <td>Surat Jaminan </td>
                                     <td id="surat_jaminan_file_name">Tidak ada file</td>
-                                    @if (auth()->user()->role === 'admin')
                                     <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td>
-                               @endif
+                 
                                    
                                 </tr>
-                                
+           
                             </tbody>
+                            @endif
                         </table>
      
                              <div class="d-flex justify-content-center mt-4">

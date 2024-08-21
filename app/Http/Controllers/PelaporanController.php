@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Pelaporan;
 use Illuminate\Http\Request;
 
@@ -22,50 +22,64 @@ class PelaporanController extends Controller
     
 
     public function upload(Request $request)
-{
-    $request->validate([
-        'nip' => 'required',
-        'nama' => 'required',
-        'instansi' => 'required',
-        'no_hp' => 'required',
-        'diagnosa' => 'required',
-        'kronologi' => 'required',
-        'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
-    ],[
+    {
+        // Validasi input
+        $request->validate([
+            'nip' => 'required',
+            'nama' => 'required',
+            'instansi' => 'required',
+            'no_hp' => 'required',
+            'diagnosa' => 'required',
+            'kronologi' => 'required',
+            'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
+        ],[
             'nip.required'=>'NIP tidak boleh kosong',
             'nama.required'=>'Nama tidak boleh kosong',
             'instansi.required'=>'Instansi tidak boleh kosong',
             'no_hp.required'=>'NO HP tidak boleh kosong',
             'diagnosa.required'=>'Diagnosa tidak boleh kosong',
             'kronologi.required'=>'Kronologi tidak boleh kosong',
-            'surat_jaminan_file.required'=>'surat_jaminan_file tidak boleh kosong',
         ]);
-
-    // Jika ID ada, cari data yang akan diupdate, jika tidak buat baru
-    $pelaporan = $request->id ? Pelaporan::find($request->id) : new Pelaporan();
-
-    // Set field yang harus diupdate
-    $pelaporan->nip = $request->input('nip');
-    $pelaporan->nama = $request->input('nama');
-    $pelaporan->instansi = $request->input('instansi');
-    $pelaporan->no_hp = $request->input('no_hp');
-    $pelaporan->diagnosa = $request->input('diagnosa');
-    $pelaporan->kronologi = $request->input('kronologi');
-
-    // Jangan ubah id_user jika data sudah ada
-    if (!$request->id) {
-        $pelaporan->id_user = auth()->id();
+    
+        // Cek apakah ini update atau pelaporan baru
+        $pelaporan = $request->id ? Pelaporan::find($request->id) : new Pelaporan();
+    
+        // Set data yang perlu disimpan
+        $pelaporan->nip = $request->input('nip');
+        $pelaporan->nama = $request->input('nama');
+        $pelaporan->instansi = $request->input('instansi');
+        $pelaporan->no_hp = $request->input('no_hp');
+        $pelaporan->diagnosa = $request->input('diagnosa');
+        $pelaporan->kronologi = $request->input('kronologi');
+    
+        // Set user ID jika ini pelaporan baru
+        if (!$request->id) {
+            $pelaporan->id_user = auth()->id();
+        }
+    
+        // Simpan file surat jaminan
+        if ($request->hasFile('surat_jaminan_file')) {
+            $pelaporan->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
+        }
+    
+        $pelaporan->save();
+    
+        // Kirim notifikasi ke semua admin
+        // Kirim notifikasi ke semua admin atau user
+if (auth()->user()->role === 'admin') {
+    $users = User::where('role', 'user')->get();
+    foreach ($users as $user) {
+        $user->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, true));
     }
-
-    // Jika ada file yang diupload, encode dan simpan
-    if ($request->hasFile('surat_jaminan_file')) {
-        $pelaporan->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
+} else {
+    $admins = User::where('role', 'admin')->get();
+    foreach ($admins as $admin) {
+        $admin->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, false));
     }
-
-    $pelaporan->save();
-
-    return redirect()->back()->with('success', 'Laporan Berhasil Ditambahkan');
 }
+
+        return redirect()->back()->with('success', 'Laporan Berhasil Ditambahkan');
+    }
 
     public function download($id, $fileType)
     {

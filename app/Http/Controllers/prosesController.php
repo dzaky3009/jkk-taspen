@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Claim;
 use Illuminate\Http\Request;
 
@@ -97,11 +97,29 @@ class prosesController extends Controller
             $claim->dokumen_pendukung_lainnya = base64_encode(file_get_contents($request->file('dokumen_pendukung_lainnya_file')->path()));
         }
 
-
-        
         
 
         $claim->save();
+        if (auth()->user()->role === 'admin') {
+            $users = User::where('role', 'user')->get();
+            foreach ($users as $user) {
+                if ($claim->status === 'memenuhi syarat') {
+                    $user->notify(new \App\Notifications\ClaimApprovedNotification($claim));
+                } elseif ($claim->status === 'tidak memenuhi syarat') {
+                    $user->notify(new \App\Notifications\ClaimRejectedNotification($claim));
+                } else {
+                    $user->notify(new \App\Notifications\ClaimReupload($claim));
+                }
+            }
+        } else {
+            $admins = User::where('role', 'admin')->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new \App\Notifications\ClaimReupload($claim));
+            }
+        }
+       
+        
+        
 
         return redirect()->back()->with('success', 'Claim successfully saved.');
     }

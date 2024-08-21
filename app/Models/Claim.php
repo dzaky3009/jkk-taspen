@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +10,14 @@ class Claim extends Model
     use HasFactory;
 
     protected $table = 'claim';
+  // app/Models/Claim.php
+  public function user()
+  {
+      return $this->belongsTo(User::class, 'user_id'); // Pastikan kolom 'user_id' sesuai dengan yang ada di database
+  }
+  
+
+
 
     protected $fillable = [
         'nip',

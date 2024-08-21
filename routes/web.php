@@ -52,4 +52,16 @@ Route::middleware('auth')->group(function () {
     Route::controller(msController::class)->prefix('ms')->group(function () {
         Route::get('/', 'index')->name('ms');
     });
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    // routes/web.php
+
+    Route::get('/mark-as-read/{id}', function($id) {
+        $notification = auth()->user()->unreadNotifications->find($id);
+        if ($notification) {
+            $notification->markAsRead();
+        }
+        return redirect()->back();
+    })->name('markAsRead');
+    
+
 });
