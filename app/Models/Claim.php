@@ -10,10 +10,10 @@ class Claim extends Model
     use HasFactory;
 
     protected $table = 'claim';
-  // app/Models/Claim.php
+  
   public function user()
   {
-      return $this->belongsTo(User::class, 'user_id'); // Pastikan kolom 'user_id' sesuai dengan yang ada di database
+      return $this->belongsTo(User::class, 'user_id'); 
   }
   
 

@@ -10,15 +10,11 @@ class prosesController extends Controller
 
     public function index()
     {
-        // Dapatkan user yang sedang auth
+       
         $user = auth()->user();
-    
-        // Periksa role user
         if ($user->role === 'admin') {
-            // Jika role adalah admin, ambil semua data claim dengan status bukan draft
             $proses = Claim::where('status', '!=', 'draft')->get();
         } else {
-            // Jika role adalah user, ambil hanya data claim yang user_id-nya sama dengan ID user yang sedang auth dan status bukan draft
             $proses = Claim::where('status', '!=', 'draft')
                           ->where('id_user', $user->id)
                           ->get();
@@ -105,7 +101,7 @@ class prosesController extends Controller
             foreach ($users as $user) {
                 if ($claim->status === 'memenuhi syarat') {
                     $user->notify(new \App\Notifications\ClaimApprovedNotification($claim));
-                } elseif ($claim->status === 'tidak memenuhi syarat') {
+                } elseif ($claim->status === 'belum memenuhi syarat') {
                     $user->notify(new \App\Notifications\ClaimRejectedNotification($claim));
                 } else {
                     $user->notify(new \App\Notifications\ClaimReupload($claim));

@@ -30,4 +30,4 @@ class ClaimApprovedNotification extends Notification
     }
 }
 
-// app/Notifications/ClaimRejectedNotification.php
+

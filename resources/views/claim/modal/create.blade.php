@@ -1,4 +1,4 @@
-{{-- saya menambahkan file baru,sesuaikan nama file nya --}}
+
 <form id="claimForm" action="{{ url('/claim/upload') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal fade text-left" id="ModalCreate" tabindex="-1" role="dialog" aria-hidden="true">
@@ -110,7 +110,7 @@
                                     <td id="dokumen_pendukung_lainnya_file_name">Tidak ada file yang dipilih</td>
                                     <td><input type="file" name="dokumen_pendukung_lainnya_file" id="dokumen_pendukung_lainnya_file" /></td>
                                 </tr>
-                                <!-- Tambahkan baris lain sesuai kebutuhan -->
+               
                             </tbody>
                             
                         </table>
@@ -143,7 +143,7 @@ function editDraft(id, nip, nama, instansi, no_hp, diagnosa, tgl_kejadian,surat_
     document.getElementById('tgl_kejadian').value = tgl_kejadian;
     document.getElementById('status').value = 'draft';
   
-    // Update nama file
+
     document.getElementById('surat_jaminan_file_name').innerHTML = surat_jaminan ? `<a href="/claim/download/${id}/surat_jaminan" target="_blank">surat_jaminan.pdf</a>` : 'Tidak ada file yang dipilih';
     document.getElementById('fpp_file_name').innerHTML = fpp ? `<a href="/claim/download/${id}/fpp" target="_blank">FPP.pdf</a>` : 'Tidak ada file yang dipilih';
     document.getElementById('kwitansi_file_name').innerHTML = kwitansi ? `<a href="/claim/download/${id}/kwitansi" target="_blank">Kwitansi.pdf</a>` : 'Tidak ada file yang dipilih';

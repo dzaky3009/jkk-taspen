@@ -62,70 +62,70 @@
                                 <tr>
                                     <th>Dokumen</th>
                                     <th>Nama File</th>
-                                    {{-- <th>Upload</th> --}}
+                                    <th>Upload</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Surat Jaminan </td>
                                     <td id="surat_jaminan_file_name">Tidak ada file</td>          
-                                    {{-- <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td> --}}
+                                    <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td>
 
                                 </tr>
                                 <tr>
                                     <td>FPP</td>
                                     <td id="fpp_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="fpp_file" id="fpp_file" /></td> --}}
+                                    <td><input type="file" name="fpp_file" id="fpp_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Kwitansi</td>
                                     <td id="kwitansi_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="kwitansi_file" id="kwitansi_file" /></td> --}}
+                                    <td><input type="file" name="kwitansi_file" id="kwitansi_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Taspen 3</td>
                                     <td id="taspen_3_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="taspen_3_file" id="taspen_3_file" /></td> --}}
+                                    <td><input type="file" name="taspen_3_file" id="taspen_3_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Rincian Tagihan</td>
                                     <td id="rincian_tagihan_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="rincian_tagihan_file" id="rincian_tagihan_file" /></td> --}}
+                                    <td><input type="file" name="rincian_tagihan_file" id="rincian_tagihan_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Resume Medis</td>
                                     <td id="resume_medis_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="resume_medis_file" id="resume_medis_file" /></td> --}}
+                                    <td><input type="file" name="resume_medis_file" id="resume_medis_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Pemeriksaan Labor</td>
                                     <td id="pemeriksaan_labor_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="pemeriksaan_labor_file" id="pemeriksaan_labor_file" /></td> --}}
+                                    <td><input type="file" name="pemeriksaan_labor_file" id="pemeriksaan_labor_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Bacaan Pemeriksaan Radiologi</td>
                                     <td id="bacaan_pemeriksaan_radiologi_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="bacaan_pemeriksaan_radiologi_file" id="bacaan_pemeriksaan_radiologi_file" /></td> --}}
+                                    <td><input type="file" name="bacaan_pemeriksaan_radiologi_file" id="bacaan_pemeriksaan_radiologi_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Salinan Laporan Operasi</td>
                                     <td id="salinan_laporan_operasi_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="salinan_laporan_operasi_file" id="salinan_laporan_operasi_file" /></td> --}}
+                                    <td><input type="file" name="salinan_laporan_operasi_file" id="salinan_laporan_operasi_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Surat Jaminan Jasa Raharja</td>
                                     <td id="surat_jaminan_jasa_raharja_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="surat_jaminan_jasa_raharja_file" id="surat_jaminan_jasa_raharja_file" /></td> --}}
+                                    <td><input type="file" name="surat_jaminan_jasa_raharja_file" id="surat_jaminan_jasa_raharja_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Surat Keterangan Platform Jasa Raharja</td>
                                     <td id="surat_keterangan_platform_jasa_raharja_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="surat_keterangan_platform_jasa_raharja_file" id="surat_keterangan_platform_jasa_raharja_file" /></td> --}}
+                                    <td><input type="file" name="surat_keterangan_platform_jasa_raharja_file" id="surat_keterangan_platform_jasa_raharja_file" /></td>
                                 </tr>
                                 <tr>
                                     <td>Dokumen Pendukung Lainnya</td>
                                     <td id="dokumen_pendukung_lainnya_file_name">Tidak ada file yang dipilih</td>
-                                    {{-- <td><input type="file" name="dokumen_pendukung_lainnya_file" id="dokumen_pendukung_lainnya_file" /></td> --}}
+                                    <td><input type="file" name="dokumen_pendukung_lainnya_file" id="dokumen_pendukung_lainnya_file" /></td>
                                 </tr>
                                 <!-- Tambahkan baris lain sesuai kebutuhan -->
                             </tbody>

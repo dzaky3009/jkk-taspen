@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User; // Pastikan model User diimpor
+use App\Models\User; 
 
 class RegisterController extends Controller
 {
     public function index()
     {
-        return view('buat_akun.index'); // Mengembalikan view pendaftaran
+        return view('buat_akun.index'); 
     }
 
     public function store(Request $request)
@@ -24,7 +24,6 @@ class RegisterController extends Controller
     
         $validatedData['password'] = Hash::make($validatedData['password']);
         
-        // Pastikan 'role' disertakan dalam data yang disimpan
         User::create($validatedData);
     
         return redirect('/login')->with('success', 'Pendaftaran berhasil! Silakan login.');

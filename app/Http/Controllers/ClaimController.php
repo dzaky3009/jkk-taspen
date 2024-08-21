@@ -11,15 +11,15 @@ class ClaimController extends Controller
 {
     public function index()
     {
-        // Dapatkan user yang sedang auth
+        
         $user = auth()->user();
     
-        // Periksa role user
+        
         if ($user->role === 'admin') {
-            // Jika role adalah admin, tampilkan semua claim
+            
             $claim = Claim::all();
         } else {
-            // Jika role adalah user, tampilkan hanya claim yang user_id-nya sama dengan ID user
+            
             $claim = Claim::where('id_user', $user->id)->get();
         }
     
@@ -64,7 +64,7 @@ class ClaimController extends Controller
             $claim->id_user = auth()->id();
         }
 
-        // Handle file uploads
+        
         if ($request->hasFile('surat_jaminan_file')) {
             $claim->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
         }
@@ -169,7 +169,7 @@ class ClaimController extends Controller
         return abort(404);
     }
     
-    $fileContent = $claim->{$fileType}; // Ambil konten file base64
+    $fileContent = $claim->{$fileType}; 
     
     if (!$fileContent) {
         return abort(404);
@@ -180,7 +180,7 @@ class ClaimController extends Controller
     $fileExtension = $this->getFileExtension($fileType);
     
     return response($fileContent, 200)
-        ->header('Content-Type', 'application/pdf') // Sesuaikan Content-Type jika bukan PDF
+        ->header('Content-Type', 'application/pdf') 
         ->header('Content-Disposition', "inline; filename=\"$fileName\"")
         ->header('Content-Transfer-Encoding', 'binary');
 }
@@ -192,7 +192,12 @@ private function getFileName($fileType)
         'kwitansi' => 'Kwitansi.pdf',
         'taspen_3' => 'Taspen 3.pdf',
         'rincian_tagihan' => 'rincian tagihan.pdf',
-        // Tambahkan nama file lain sesuai kebutuhan
+       'resume_medis_file' => 'resume_medis_file.pdf',
+            'bacaan_pemeriksaan_radiologi' => 'bacaan_pemeriksaan_radiologi.pdf',
+            'salinan_laporan_operasi' => 'salinan_laporan_operasi.pdf',
+            'surat_jaminan_jasa_raharja' => 'salinan_laporan_operasi.pdf',
+            'surat_keterangan_platform_jasa_raharja' => 'salinan_laporan_operasi.pdf',
+            'dokumen_pendukung_lainnya' => 'salinan_laporan_operasi.pdf',
     ];
     
     return $fileNames[$fileType] ?? 'file.pdf';
@@ -200,7 +205,7 @@ private function getFileName($fileType)
 
 private function getFileExtension($fileType)
 {
-    return 'pdf'; // Sesuaikan jika perlu
+    return 'pdf'; 
 }
 
 }
