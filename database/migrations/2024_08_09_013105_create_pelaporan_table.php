@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('diagnosa')->nullable();
             $table->text('kronologi')->nullable();
             $table->string('id_user')->nullable();
-            $table->binary('surat_jaminan')->nullable();
+            $table->longText('surat_jaminan')->charset('binary')->nullable();
             $table->timestamps();
         });
     }

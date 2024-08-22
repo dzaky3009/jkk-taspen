@@ -23,18 +23,18 @@ return new class extends Migration
             $table->string('id_user')->nullable();
             $table->text('note')->nullable();
             // Kolom untuk file dalam format base64, menggunakan binary
-            $table->binary('surat_jaminan')->nullable();
-            $table->binary('fpp')->nullable();
-            $table->binary('kwitansi')->nullable();
-            $table->binary('taspen_3')->nullable();
-            $table->binary('rincian_tagihan')->nullable();
-            $table->binary('resume_medis')->nullable();
-            $table->binary('pemeriksaan_labor')->nullable();
-            $table->binary('bacaan_pemeriksaan_radiologi')->nullable();
-            $table->binary('salinan_laporan_operasi')->nullable();
-            $table->binary('surat_jaminan_jasa_raharja')->nullable();
-            $table->binary('surat_keterangan_platform_jasa_raharja')->nullable();
-            $table->binary('dokumen_pendukung_lainnya')->nullable();
+            $table->longText('surat_jaminan')->charset('binary')->nullable();
+            $table->longText('fpp')->charset('binary')->nullable();
+            $table->longText('kwitansi')->charset('binary')->nullable();
+            $table->longText('taspen_3')->charset('binary')->nullable();
+            $table->longText('rincian_tagihan')->charset('binary')->nullable();
+            $table->longText('resume_medis')->charset('binary')->nullable();
+            $table->longText('pemeriksaan_labor')->charset('binary')->nullable();
+            $table->longText('bacaan_pemeriksaan_radiologi')->charset('binary')->nullable();
+            $table->longText('salinan_laporan_operasi')->charset('binary')->nullable();
+            $table->longText('surat_jaminan_jasa_raharja')->charset('binary')->nullable();
+            $table->longText('surat_keterangan_platform_jasa_raharja')->charset('binary')->nullable();
+            $table->longText('dokumen_pendukung_lainnya')->charset('binary')->nullable();
 
             $table->timestamps();
         });
