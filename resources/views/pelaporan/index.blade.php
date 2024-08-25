@@ -38,10 +38,10 @@
                         <th>DIAGNOSA</th>
                         <th>KRONOLOGI</th>
                 
-                        <th>SURAT JAMINAN</th>
+                        <th>HASIL VERIFIKASI</th>
                 
                         @if(auth()->user()->role === 'admin')
-                        <th>TAMBAH SURAT JAMINAN</th>
+                        <th>TAMBAH HASIL VERIFIKASI</th>
                         @endif
                     </tr>
                 </thead>
@@ -60,13 +60,13 @@
                             @if($row->surat_jaminan)
                                 <td>
                                     <a href="/pelaporan/download/{{ $row->id }}/surat_jaminan" class="btn btn-primary" target="_blank">
-                                        Surat Jaminan
+                                        Hasil Verifikasi
                                     </a>
                                 </td>
                             @else
                             <td>
                                 <a href="#" class="btn btn-danger" >
-                                   Belum ada surat jaminan
+                                   Belum Ada Hasil Verifikasi
                                 </a>
                             </td>
                             @endif

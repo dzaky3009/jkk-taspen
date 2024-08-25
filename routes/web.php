@@ -7,6 +7,7 @@ use App\Http\Controllers\bmsController;
 use App\Http\Controllers\mscontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ubahpasswordController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -63,5 +64,6 @@ Route::middleware('auth')->group(function () {
     })->name('markAsRead');
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
     Route::post('/register', [RegisterController::class, 'store']);
-
+    Route::get('/ubah', [ubahpasswordController::class, 'index']);
+    Route::post('/ubah', [ubahpasswordController::class, 'upload']);
 });

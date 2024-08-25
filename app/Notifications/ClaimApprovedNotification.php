@@ -24,7 +24,7 @@ class ClaimApprovedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Klaim Anda dengan ID ' . $this->claim->id . ' telah disetujui.',
+            'message' => 'Klaim Anda atas Nama ' . $this->claim->nama . ' telah disetujui',
             'claim_id' => $this->claim->id,
         ];
     }

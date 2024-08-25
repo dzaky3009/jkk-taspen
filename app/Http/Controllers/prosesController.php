@@ -34,6 +34,7 @@ class prosesController extends Controller
             'note' => 'nullable|string',
             'tgl_kejadian' => 'required',
             'status' => 'required',
+            'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'fpp_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'kwitansi_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'taspen_3_file' => 'nullable|file|mimes:pdf,jpeg,png',
@@ -45,7 +46,7 @@ class prosesController extends Controller
             'surat_keterangan_platform_jasa_raharja_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'dokumen_pendukung_lainnya_file' => 'nullable|file|mimes:pdf,jpeg,png',
             
-    
+
             
             
         ]);
@@ -61,6 +62,9 @@ class prosesController extends Controller
         $claim->note = $request->note;
 
         // Handle file uploads
+        if ($request->hasFile('surat_jaminan_file')) {
+            $claim->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
+        }
         if ($request->hasFile('fpp_file')) {
             $claim->fpp = base64_encode(file_get_contents($request->file('fpp_file')->path()));
         }

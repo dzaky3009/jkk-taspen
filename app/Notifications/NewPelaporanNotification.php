@@ -27,8 +27,8 @@ class NewPelaporanNotification extends Notification
     public function toDatabase($notifiable)
     {
         $message = $this->isAdmin
-            ? 'Admin sudah mengupload surat jaminan'
-            : 'Pelaporan baru dari ' . $this->pelaporan->nama;
+            ? 'Admin sudah mengupload hasil verifikasi'
+            : 'Pelaporan baru dari ' . $this->pelaporan->instansi . ' Atas Nama ' . $this->pelaporan->nama;
 
         return [
             'message' => $message,
