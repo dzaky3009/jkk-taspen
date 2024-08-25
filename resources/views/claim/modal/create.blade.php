@@ -51,7 +51,7 @@
                             <tbody>
                                 <tr>
                                     <td>Surat Jaminan </td>
-                                    <td id="surat_jaminan_file_name">Tidak ada file</td>          
+                                    <td id="surat_jaminan_file_name">Tidak ada file yang dipilih</td>          
                                     <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td>
 
                                 </tr>
