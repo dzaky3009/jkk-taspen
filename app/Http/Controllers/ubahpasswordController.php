@@ -31,6 +31,6 @@ class UbahPasswordController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Berhasil ubah password');
+        return redirect()->back()->with('success', 'BERHASIL MENGGANTI PASSWORD !!!');
     }
 }

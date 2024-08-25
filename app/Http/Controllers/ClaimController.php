@@ -109,7 +109,7 @@ class ClaimController extends Controller
         $admins = User::where('role', 'admin')->get();
     Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
 
-        return redirect()->back()->with('success', 'Claim Berhasil Ditambahkan');
+        return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
     }
 
     public function showFile($id, $type)

@@ -25,7 +25,7 @@ class ClaimNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Klaim baru telah ditambahkan oleh '.$this->claim->instansi . ' Atas Nama ' . $this->claim->nama, 
+            'message' => 'Klaim Baru Telah Ditambahkan Oleh '.$this->claim->instansi . ' Atas Nama ' . $this->claim->nama, 
             'claim_id' => $this->claim->id,
             'nip' => $this->claim->nip,
             'nama' => $this->claim->nama,

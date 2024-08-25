@@ -49,7 +49,7 @@
                                     data-toggle="modal" data-target="#ModalCreate">
                         
                                         <i class="fa fa-times"></i>
-                                    bms
+                                    BMS
                                 </button>
                                 @elseif ($row->status == 'memenuhi syarat')
                                     <button class="btn btn-success">

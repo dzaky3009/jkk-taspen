@@ -27,7 +27,7 @@ class ClaimReupload extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->claim->id . ' Telah memperbaiki claimnya ' ,
+            'message' => $this->claim->instansi . ' Telah Memperbaiki Claimnya, '. 'Atas Nama  ' . $this->claim->nama,
             'claim_id' => $this->claim->id,
         ];
     }

@@ -50,6 +50,8 @@
             <span class="ml=1">Memenuh Syarat</span>
         </a>
     </li>
+
+    @if(auth()->user()->role === 'admin')
     <li class="nav-item {{ request()->is('register') ? 'active bg-warning' : ''  }}">
         <a class="nav-link collapsed" href="{{ route('register') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
@@ -59,6 +61,7 @@
             <span class="ml=1"> Register</span>
         </a>
     </li>
+    @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

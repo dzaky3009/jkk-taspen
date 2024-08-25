@@ -121,7 +121,7 @@ class prosesController extends Controller
         
         
 
-        return redirect()->back()->with('success', 'Claim successfully saved.');
+        return redirect()->back()->with('success', 'ClAIM BERHASIL DISIMPAN !!!.');
     }
 
 }

@@ -78,7 +78,7 @@ if (auth()->user()->role === 'admin') {
     }
 }
 
-        return redirect()->back()->with('success', 'Laporan Berhasil Ditambahkan');
+        return redirect()->back()->with('success', 'LAPORAN BERHASIL DITAMBAHKAN !!!');
     }
 
     public function download($id, $fileType)

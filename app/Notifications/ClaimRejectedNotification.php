@@ -27,7 +27,7 @@ class ClaimRejectedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Klaim Anda atas nama ' . $this->claim->nama . ' ditolak dengan Catatan ' . $this->claim->note,
+            'message' => 'Klaim Anda Atas Nama ' . $this->claim->nama . ' Ditolak Dengan Catatan ' . $this->claim->note,
             'claim_id' => $this->claim->id,
         ];
     }
