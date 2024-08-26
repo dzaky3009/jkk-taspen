@@ -54,39 +54,38 @@
                             <td>{{ $row->tgl_kejadian }}</td>
                             <td>
                                 @if ($row->status == 'draft')
-                                <button class="btn btn-warning"
-                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
-                                    data-toggle="modal" data-target="#ModalCreate">
-                                    <i class="fa fa-pencil-alt"></i>
-                                    {{ $row->status }}
-                                </button>
-                            @elseif ($row->status == 'belum memenuhi syarat')
-                            <button class="btn btn-warning"
-                                onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
-                                data-toggle="modal" data-target="#ModalCreate">
-                                <i class="fa fa-pencil-alt"></i>
-                                {{ $row->status }}
-                            </button>
-                            @elseif ($row->status == 'tidak memenuhi syarat')
-                            <button class="btn btn-danger">
-                                <i class="fas fa-times"></i>
-                               Tidak Memenuhi Syarat
-                            </button>
-                            @elseif ($row->status == 'send')
-                            <button class="btn btn-info">
-                                <i class="fas fa-check"></i>
-                               Diproses
-                            </button>
-
-                            @elseif ($row->status != 'draft')
-                                <button class="btn btn-success">
-                                    <i class="fas fa-check"></i>
-                                    {{ $row->status }}
-                                </button>
-                           
-                            @else
-                                <span class="badge badge-secondary">UNKNOWN</span>
-                            @endif
+                                    <button class="btn btn-warning"
+                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
+                                        data-toggle="modal" data-target="#ModalCreate">
+                                        <i class="fa fa-pencil-alt"></i>
+                                        Draft
+                                    </button>
+                                @elseif ($row->status == 'belum memenuhi syarat')
+                                    <button class="btn" style="background-color: orange; color:white"
+                                        onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}', '{{ $row->rincian_tagihan }}', '{{ $row->resume_medis }}', '{{ $row->bacaan_pemeriksaan_radiologi }}', '{{ $row->salinan_laporan_operasi }}', '{{ $row->surat_jaminan_jasa_raharja }}', '{{ $row->surat_keterangan_platform_jasa_raharja }}', '{{ $row->dokumen_pendukung_lainnya }}')"
+                                        data-toggle="modal" data-target="#ModalCreate">
+                                        <i class="fa fa-times"></i>
+                                        Belum Memenuhi Syarat
+                                    </button>
+                                @elseif ($row->status == 'tidak memenuhi syarat')
+                                    <button class="btn btn-danger">
+                                        <i class="fas fa-times"></i>
+                                    Tidak Memenuhi Syarat
+                                    </button>
+                                @elseif ($row->status == 'send')
+                                    <button class="btn btn-info">
+                                        <i class="fas fa-check"></i>
+                                    Dalam Proses
+                                    </button>
+                                @elseif ($row->status != 'draft')
+                                    <button class="btn btn-success">
+                                        <i class="fas fa-check"></i>
+                                        Memenuhi Syarat
+                                    </button>
+                            
+                                @else
+                                    <span class="badge badge-secondary">UNKNOWN</span>
+                                @endif
                             
                             </td>
                         </tr>

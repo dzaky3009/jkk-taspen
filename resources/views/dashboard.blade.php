@@ -171,7 +171,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                not qualify</div>
+                                Not Qualify</div>
                                 <a href="{{ route('tms') }}" class="btn btn-danger btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-times"></i> 
@@ -187,6 +187,54 @@
                 </div>
             </div>
         </div>
+
+        @if(auth()->user()->role === 'admin')
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-secondary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                Register</div>
+                                <a href="{{ route('register') }}" class="btn btn-secondary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-pencil-alt"></i> 
+                                    </span>
+                                    <span class="text">Buat Akun</span>
+                                </a>
+                                
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-pencil-alt fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                Acount Info</div>
+                                <a href="{{ route('register') }}" class="btn btn-dark btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-cog"></i> 
+                                    </span>
+                                    <span class="text">Informasi Akun</span>
+                                </a>
+                                
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-cog fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
 
     </div>
 

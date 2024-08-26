@@ -43,7 +43,7 @@
                                 @if ($row->status == 'send')
                                     <button class="btn btn-info">
                                         {{-- <i class="fas fa-check"></i> --}}
-                                        Diproses
+                                        Dalam Proses
                                     </button>
                                 @elseif ($row->status == 'belum memenuhi syarat')
                                     <button class="btn" style="background-color:orange ;color:white"

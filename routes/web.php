@@ -66,8 +66,12 @@ Route::middleware('auth')->group(function () {
         }
         return redirect()->back();
     })->name('markAsRead');
+
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
+
     Route::post('/register', [RegisterController::class, 'store']);
+
     Route::get('/ubah', [ubahpasswordController::class, 'index']);
+    
     Route::post('/ubah', [ubahpasswordController::class, 'upload']);
 });

@@ -44,7 +44,7 @@
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div> --}}
                                     <br>
-                                    <a href="whatsapp://send?text=bang%20lupa%20password&phone=+6282284269694">lupa password</a>
+                                    <a href="whatsapp://send?text=Min%20Lupa%20Password&phone=+6282284269694">Lupa Password</a>
                                 </div>
                             </div>
                         </div>
