@@ -26,7 +26,7 @@ class ClaimTMSNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Klaim Anda Atas Nama ' . $this->claim->nama . ' telah ditolak oleh admin,dengan pesan' ,
+            'message' => 'Klaim Anda Atas Nama ' . $this->claim->nama . ' telah ditolak oleh admin, dengan pesan ' . $this->claim->note ,
             'claim_id' => $this->claim->id,
         ];
     }
