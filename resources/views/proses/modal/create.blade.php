@@ -35,17 +35,19 @@
                         <input type="date" name="tgl_kejadian" class="form-control" id="tgl_kejadian">
                     </div>
                     <div class="mb-3">
+                        @auth
+                        @if(Auth::user()->role == 'admin')
                         <label for="status">Status</label>
                         <select name="status" class="form-control" id="status">
-                            @auth
-                            @if(Auth::user()->role == 'admin')
+                        
                             <option value="memenuhi syarat">Memenuhi Syarat</option>
                             <option value="belum memenuhi syarat">Belum Memenuhi Syarat</option>
                             <option value="tidak memenuhi syarat">Tidak Memenuhi Syarat</option>
                             
-                            @else
-                            <option value="send" selected>send</option>
-                            @endif
+                        @else
+                        <input type="text" id="status" hidden>
+                        <input type="text"  name="status"  value="send" hidden>
+                        @endif
                             @endauth
                         </select>
                     </div>

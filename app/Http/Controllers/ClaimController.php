@@ -17,7 +17,7 @@ class ClaimController extends Controller
         
         if ($user->role === 'admin') {
             
-            $claim = Claim::where('status' ,'send')->get();
+            $claim = Claim::all();
         } else {
             
             $claim = Claim::where('id_user', $user->id)->get();

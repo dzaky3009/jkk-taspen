@@ -13,9 +13,9 @@ class prosesController extends Controller
        $judul ="Data Dalam Proses";
         $user = auth()->user();
         if ($user->role === 'admin') {
-            $proses = Claim::where('status', '!=', 'draft')->get();
+            $proses = Claim::where('status',  'send')->get();
         } else {
-            $proses = Claim::where('status', '!=', 'draft')
+            $proses = Claim::where('status',  'send')
                           ->where('id_user', $user->id)
                           ->get();
         }
