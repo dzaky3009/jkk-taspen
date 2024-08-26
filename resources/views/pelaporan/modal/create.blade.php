@@ -78,7 +78,8 @@
                                     <tr>
                                         <td>Surat Jaminan</td>
                                         <td id="surat_jaminan_file_name">Tidak ada file</td>
-                                        <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" /></td>
+                                        <td><input type="file" name="surat_jaminan_file" id="surat_jaminan_file" />
+                                        <p class="text-danger" style="font-style: italic">File Tidak Boleh Lebih Dari 2 MB</p></td>
                                     </tr>
                                 </tbody>
                             </table>

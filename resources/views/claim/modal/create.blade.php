@@ -14,26 +14,56 @@
                     <div class="mb-3">
                         <label for="nip">NIP</label>
                         <input type="text" name="nip" class="form-control" id="nip">
+                        @error('nip')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="nama">NAMA</label>
                         <input type="text" name="nama" class="form-control" id="nama">
+                        @error('nama')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="instansi">INSTANSI</label>
                         <input type="text" name="instansi" class="form-control" id="instansi">
+                        @error('instansi')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="no_hp">NO HP</label>
                         <input type="text" name="no_hp" class="form-control" id="no_hp">
+                        @error('no_hp')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="diagnosa">DIAGNOSA</label>
                         <input type="text" name="diagnosa" class="form-control" id="diagnosa">
+                        @error('diagnosa')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tgl_kejadian">Tanggal Kejadian</label>
                         <input type="date" name="tgl_kejadian" class="form-control" id="tgl_kejadian">
+                        @error('tgl_kejadian')
+                            <p class="text-danger" style="font-style: italic">
+                                {{ $message }}
+                            </p>
+                        @enderror
                     </div>
 
                     <input type="hidden" name="status" id="status" value="">

@@ -10,7 +10,7 @@ class tmsController extends Controller
     {
        
         $user = auth()->user();
-        $judul = ' Memenuhi Syarat';
+        $judul = ' Tidak Memenuhi Syarat';
         if ($user->role === 'admin') {
             $proses = Claim::where('status', '=', 'tidak memenuhi syarat')->get();
         } else {
