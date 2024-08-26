@@ -7,8 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
-class ClaimRejectedNotification extends Notification
+class ClaimTMSNotification extends Notification
 {
     use Queueable;
 
@@ -27,7 +26,7 @@ class ClaimRejectedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Klaim Anda Atas Nama ' . $this->claim->nama . ' Belum Memenuhi Syarat Dengan Catatan ' . $this->claim->note,
+            'message' => 'Klaim Anda Atas Nama ' . $this->claim->nama . ' telah ditolak oleh admin,dengan pesan' ,
             'claim_id' => $this->claim->id,
         ];
     }

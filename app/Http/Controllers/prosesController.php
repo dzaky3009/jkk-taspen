@@ -107,7 +107,9 @@ class prosesController extends Controller
                     $user->notify(new \App\Notifications\ClaimApprovedNotification($claim));
                 } elseif ($claim->status === 'belum memenuhi syarat') {
                     $user->notify(new \App\Notifications\ClaimRejectedNotification($claim));
-                } else {
+                } elseif ($claim->status === 'tidak memenuhi syarat') {
+                    $user->notify(new \App\Notifications\ClaimTMSNotification($claim));}
+                else {
                     $user->notify(new \App\Notifications\ClaimReupload($claim));
                 }
             }
