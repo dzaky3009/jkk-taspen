@@ -17,7 +17,7 @@ class ClaimController extends Controller
         
         if ($user->role === 'admin') {
             
-            $claim = Claim::all();
+            $claim = Claim::where('status' ,'send')->get();
         } else {
             
             $claim = Claim::where('id_user', $user->id)->get();
@@ -37,17 +37,30 @@ class ClaimController extends Controller
             'tgl_kejadian' => 'required',
             'status' => 'required',
             'note' => 'nullable|string',
-            'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
-            'fpp_file' => 'nullable|file|mimes:pdf,jpeg,png',
-            'kwitansi_file' => 'nullable|file|mimes:pdf,jpeg,png',
-            'taspen_3_file' => 'nullable|file|mimes:pdf,jpeg,png',
-            'rincian_tagihan_file' => 'nullable|file|mimes:pdf,jpeg,png',
+            'surat_jaminan_file' => 'required|file|mimes:pdf,jpeg,png',
+            'fpp_file' => 'required|file|mimes:pdf,jpeg,png',
+            'kwitansi_file' => 'required|file|mimes:pdf,jpeg,png',
+            'taspen_3_file' => 'required|file|mimes:pdf,jpeg,png',
+            'rincian_tagihan_file' => 'required|file|mimes:pdf,jpeg,png',
             'resume_medis_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'bacaan_pemeriksaan_radiologi_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'salinan_laporan_operasi_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'surat_jaminan_jasa_raharja_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'surat_keterangan_platform_jasa_raharja_file' => 'nullable|file|mimes:pdf,jpeg,png',
             'dokumen_pendukung_lainnya_file' => 'nullable|file|mimes:pdf,jpeg,png',
+        ],[
+            'nip.required'=>'* NIP tidak boleh kosong',
+            'nama.required'=>'* Nama tidak boleh kosong',
+            'instansi.required'=>'* Instansi tidak boleh kosong',
+            'no_hp.required'=>'* NO HP tidak boleh kosong',
+            'diagnosa.required'=>'* Diagnosa tidak boleh kosong',
+            'tgl_kejadian.required'=>'* Tanggal tidak boleh kosong', 
+            'status.required'=>'* Status tidak boleh kosong', 
+            'surat_jaminan_file.required'=>'* Status tidak boleh kosong', 
+            'fpp_file.required'=>'* Status tidak boleh kosong', 
+            'kwitansi_file.required'=>'* Status tidak boleh kosong', 
+            'taspen_3_file.required'=>'* Status tidak boleh kosong', 
+            'rincian_tagihan_file.required'=>'* Status tidak boleh kosong', 
         ]);
 
         $claim = $request->id ? Claim::find($request->id) : new Claim();
@@ -107,7 +120,7 @@ class ClaimController extends Controller
 
         $claim->save();
         $admins = User::where('role', 'admin')->get();
-    Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+        Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
 
         return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
     }

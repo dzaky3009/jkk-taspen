@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-    <div class="container">
+    <div class="container" style="margin-bottom: 27.5%">
         <!-- Outer Row -->
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-12 col-md-9">
@@ -43,6 +43,8 @@
                                     {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div> --}}
+                                    <br>
+                                    <a href="whatsapp://send?text=bang%20lupa%20password&phone=+6282284269694">lupa password</a>
                                 </div>
                             </div>
                         </div>
@@ -58,6 +60,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    {{-- @include('layouts.footer') --}}
 </body>
 
 </html>

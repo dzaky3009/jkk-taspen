@@ -41,14 +41,15 @@
                             @if(Auth::user()->role == 'admin')
                             <option value="memenuhi syarat">Memenuhi Syarat</option>
                             <option value="belum memenuhi syarat">Belum Memenuhi Syarat</option>
+                            <option value="tidak memenuhi syarat">Tidak Memenuhi Syarat</option>
+                            
                             @else
-                            <option value="send">send</option>
-                            
-                                @endif
+                            <option value="send" selected>send</option>
+                            @endif
                             @endauth
-                            
                         </select>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="note">Catatan Jika Tidak Memenuhi Syarat</label>
                         <textarea name="note" id="note"  class="form-control" cols="88" rows="10"></textarea>

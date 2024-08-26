@@ -25,7 +25,7 @@
 
         <a href="#" class="btn btn-warning mb-4" data-toggle="modal" data-target="#ModalCreate">
             <i class="fa fa-plus"></i>
-            CLAIM BARU
+            CLAIM 
         </a>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

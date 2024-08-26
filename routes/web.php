@@ -4,6 +4,7 @@ use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\prosesController;
 use App\Http\Controllers\bmsController;
+use App\Http\Controllers\tmsController;
 use App\Http\Controllers\mscontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(bmsController::class)->prefix('bms')->group(function () {
         Route::get('/', 'index')->name('bms');
+    });
+    Route::controller(tmsController::class)->prefix('tms')->group(function () {
+        Route::get('/', 'index')->name('tms');
     });
 
     Route::controller(msController::class)->prefix('ms')->group(function () {

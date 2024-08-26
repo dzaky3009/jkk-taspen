@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Dalam Proses')
+@section('title', $judul)
 
 @section('content')
 <div class="card shadow mb-4">
@@ -20,6 +20,7 @@
                         <th>NO HP</th>
                         <th>DIAGNOSA</th>
                         <th>TGL.KEJADIAN</th>
+                        <th>Catatan</th>
                         <th>STATUS</th>
                         @if(auth()->user()->role === 'admin')
                             <th>AKSI</th>
@@ -37,6 +38,7 @@
                             <td>{{ $row->no_hp }}</td>
                             <td>{{ $row->diagnosa }}</td>
                             <td>{{ $row->tgl_kejadian }}</td>
+                            <td>{{ $row->note }}</td>
                             <td>
                                 @if ($row->status == 'send')
                                     <button class="btn btn-info">
@@ -44,10 +46,9 @@
                                         Diproses
                                     </button>
                                 @elseif ($row->status == 'belum memenuhi syarat')
-                                    <button class="btn btn-danger"
-                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                    <button class="btn" style="background-color:orange ;color:white"
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya }}')"
                                     data-toggle="modal" data-target="#ModalCreate">
-                        
                                         <i class="fa fa-times"></i>
                                     BMS
                                 </button>
@@ -56,15 +57,22 @@
                                         <i class="fa fa-check"></i>
                                         MS
                                     </button>   
+                                @elseif ($row->status == 'tidak memenuhi syarat')
+                                    <button class="btn btn-danger" 
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya }}')"
+                                    data-toggle="modal" data-target="#ModalCreate">
+                                        
+                                        <i class="fa fa-times"></i>
+                                        TMS
+                                    </button>   
                                 @else
                                     <span class="badge badge-secondary">UNKNOWN</span>
                                 @endif
                             </td>
                             @if(auth()->user()->role === 'admin')
                             <td>
-
                                 <button class="btn btn-warning"
-                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya}}')"
+                                    onclick="editDraft('{{ $row->id }}', '{{ $row->nip }}', '{{ $row->nama }}', '{{ $row->instansi }}', '{{ $row->no_hp }}', '{{ $row->diagnosa }}', '{{ $row->tgl_kejadian }}', '{{ $row->note }}', '{{ $row->surat_jaminan }}', '{{ $row->fpp }}', '{{ $row->kwitansi }}', '{{ $row->taspen_3 }}','{{ $row->rincian_tagihan }}','{{ $row->resume_medis }}','{{ $row->bacaan_pemeriksaan_radiologi}}','{{ $row->salinan_laporan_operasi}}','{{ $row->surat_jaminan_jasa_raharja}}','{{ $row->surat_keterangan_platform_jasa_raharja}}','{{ $row->dokumen_pendukung_lainnya }}')"
                                     data-toggle="modal" data-target="#ModalCreate">
                                     <i class="fa fa-pencil-alt"></i>
                                     AKSI

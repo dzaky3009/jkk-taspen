@@ -10,7 +10,7 @@ class prosesController extends Controller
 
     public function index()
     {
-       
+       $judul ="Data Dalam Proses";
         $user = auth()->user();
         if ($user->role === 'admin') {
             $proses = Claim::where('status', '!=', 'draft')->get();
@@ -20,7 +20,7 @@ class prosesController extends Controller
                           ->get();
         }
     
-        return view('proses.index', ['proses' => $proses]);
+        return view('proses.index', ['proses' => $proses,'judul'=>$judul]);
     }
     
     public function upload(Request $request)

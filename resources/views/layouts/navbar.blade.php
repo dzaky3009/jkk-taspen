@@ -40,9 +40,11 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">
-                    {{ auth()->user()->unreadNotifications->count() }}
-                </span>
+                @if(auth()->user()->unreadNotifications->count() > 0)
+                    <span class="badge badge-danger badge-counter">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </span>
+                @endif
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -50,23 +52,28 @@
                 <h6 class="dropdown-header">
                     Alerts Center
                 </h6>
-                @foreach(auth()->user()->unreadNotifications as $notification)
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('markAsRead', $notification->id) }}">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
+                @forelse(auth()->user()->unreadNotifications as $notification)
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('markAsRead', $notification->id) }}">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-file-alt text-white"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">{{ $notification->created_at->format('d M Y') }}</div>
-                        <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
-                    </div>
-                </a>
-            @endforeach
-            
+                        <div>
+                            <div class="small text-gray-500">{{ $notification->created_at->format('d M Y') }}</div>
+                            <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
+                        </div>
+                    </a>
+                @empty
+                    <a class="dropdown-item text-center small text-gray-500" href="#">
+                        No new notifications
+                    </a>
+                @endforelse
+                
                 <a class="dropdown-item text-center small text-gray-500" href="{{ route('notifications.index') }}">Show All Alerts</a>
             </div>
         </li>
+        
         
 
         <div class="topbar-divider d-none d-sm-block"></div>

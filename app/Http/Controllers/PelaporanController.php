@@ -33,12 +33,12 @@ class PelaporanController extends Controller
             'kronologi' => 'required',
             'surat_jaminan_file' => 'nullable|file|mimes:pdf,jpeg,png',
         ],[
-            'nip.required'=>'NIP tidak boleh kosong',
-            'nama.required'=>'Nama tidak boleh kosong',
-            'instansi.required'=>'Instansi tidak boleh kosong',
-            'no_hp.required'=>'NO HP tidak boleh kosong',
-            'diagnosa.required'=>'Diagnosa tidak boleh kosong',
-            'kronologi.required'=>'Kronologi tidak boleh kosong',
+            'nip.required'=>'* NIP tidak boleh kosong',
+            'nama.required'=>'* Nama tidak boleh kosong',
+            'instansi.required'=>'* Instansi tidak boleh kosong',
+            'no_hp.required'=>'* NO HP tidak boleh kosong',
+            'diagnosa.required'=>'* Diagnosa tidak boleh kosong',
+            'kronologi.required'=>'* Kronologi tidak boleh kosong',
         ]);
     
         // Cek apakah ini update atau pelaporan baru
