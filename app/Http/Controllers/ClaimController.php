@@ -119,8 +119,10 @@ class ClaimController extends Controller
         
 
         $claim->save();
-        $admins = User::where('role', 'admin')->get();
-        Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+        if ($claim->status != 'draft') {
+            $admins = User::where('role', 'admin')->get();
+            Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+        }
 
         return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
     }

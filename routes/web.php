@@ -8,6 +8,7 @@ use App\Http\Controllers\tmsController;
 use App\Http\Controllers\mscontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\userController;
 use App\Http\Controllers\ubahpasswordController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -68,6 +69,11 @@ Route::middleware('auth')->group(function () {
     })->name('markAsRead');
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::get('/detail', [UserController::class, 'index'])->name('detail');
+    Route::get('/detail/{id}', [UserController::class, 'detail'])->name('user_detail');
+    Route::post('/detail/{id}', [UserController::class, 'updatePassword'])->name('update_password');
+    
+
 
     Route::post('/register', [RegisterController::class, 'store']);
 

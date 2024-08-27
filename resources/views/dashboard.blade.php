@@ -219,7 +219,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                 Acount Info</div>
-                                <a href="{{ route('register') }}" class="btn btn-dark btn-icon-split">
+                                <a href="{{ route('detail') }}" class="btn btn-dark btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-cog"></i> 
                                     </span>
