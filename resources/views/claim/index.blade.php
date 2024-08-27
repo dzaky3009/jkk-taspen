@@ -21,6 +21,24 @@
                     }
                 }, 2500); 
             </script>
+
+@elseif (session('gagal'))
+
+<div id="dangerAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('gagal') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="false">&times;</span>
+    </button>
+</div>
+<script>
+    setTimeout(function() {
+        var alertElement = document.getElementById('dangerAlert');
+        if (alertElement) {
+            var bootstrapAlert = new bootstrap.Alert(alertElement);
+            bootstrapAlert.close();
+        }
+    }, 2500); 
+</script>
         @endif
 
         <a href="#" class="btn btn-warning mb-4" data-toggle="modal" data-target="#ModalCreate">

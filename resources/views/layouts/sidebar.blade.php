@@ -64,6 +64,13 @@
             <span class="ml=1">Buat Akun</span>
         </a>
     </li>
+
+    <li class="nav-item {{ request()->is('detail') ? 'active bg-warning' : ''  }}">
+        <a class="nav-link collapsed" href="{{ route('detail') }}">
+            <i class="fas fa-cog"></i>
+            <span class="ml=1">Informasi Akun</span>
+        </a>
+    </li>
     @endif
 
     <!-- Sidebar Toggler (Sidebar) -->

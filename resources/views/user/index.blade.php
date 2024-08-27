@@ -22,9 +22,9 @@
                 }, 2500); 
             </script>
         @endif
-        <a href="#" class="btn btn-primary mb-4" data-toggle="modal" data-target="#ModalCreate">
+        <a href="{{ route('register') }}" class="btn btn-primary mb-4">
             <i class="fa fa-plus"></i>
-            LAPORAN BARU
+            TAMBAH AKUN
         </a>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
