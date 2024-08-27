@@ -28,7 +28,7 @@ class ClaimController extends Controller
     
     public function upload(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'nip' => 'required',
             'nama' => 'required',
             'instansi' => 'required',
@@ -62,7 +62,9 @@ class ClaimController extends Controller
             'taspen_3_file.required'=>'* Status tidak boleh kosong', 
             'rincian_tagihan_file.required'=>'* Status tidak boleh kosong', 
         ]);
-
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'LAPORAN GAGAL DITAMBAHKAN !!!');
+        }
         $claim = $request->id ? Claim::find($request->id) : new Claim();
         $claim->nip = $request->nip;
         $claim->nama = $request->nama;
@@ -116,15 +118,30 @@ class ClaimController extends Controller
 
 
         
-        
+        try {
+            $claim->save();
 
-        $claim->save();
-        if ($claim->status != 'draft') {
-            $admins = User::where('role', 'admin')->get();
-            Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+            if ($claim->status != 'draft') {
+                $admins = User::where('role', 'admin')->get();
+                Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+    
+                return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
+            } else {
+
+                return redirect()->back()->with('info', 'CLAIM BERHASIL DISIMPAN SEBAGAI DRAFT !!!');
+            }
+            // return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'CLAIM GAGAL DITAMBAHKAN !!!');
         }
 
-        return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
+        // $claim->save();
+        // if ($claim->status != 'draft') {
+        //     $admins = User::where('role', 'admin')->get();
+        //     Notification::send($admins, new \App\Notifications\ClaimNotification($claim));
+        // }
+
+        // return redirect()->back()->with('success', 'CLAIM BERHASIL DITAMBAHKAN !!!');
     }
 
     public function showFile($id, $type)

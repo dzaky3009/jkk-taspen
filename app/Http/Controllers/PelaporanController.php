@@ -24,7 +24,7 @@ class PelaporanController extends Controller
     public function upload(Request $request)
     {
         // Validasi input
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'nip' => 'required',
             'nama' => 'required',
             'instansi' => 'required',
@@ -40,10 +40,14 @@ class PelaporanController extends Controller
             'diagnosa.required'=>'* Diagnosa tidak boleh kosong',
             'kronologi.required'=>'* Kronologi tidak boleh kosong',
         ]);
-    
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Data gagal disimpan. Periksa kembali field yang harus diisi.');
+        }
+
         // Cek apakah ini update atau pelaporan baru
         $pelaporan = $request->id ? Pelaporan::find($request->id) : new Pelaporan();
-    
+
         // Set data yang perlu disimpan
         $pelaporan->nip = $request->input('nip');
         $pelaporan->nama = $request->input('nama');
@@ -51,36 +55,38 @@ class PelaporanController extends Controller
         $pelaporan->no_hp = $request->input('no_hp');
         $pelaporan->diagnosa = $request->input('diagnosa');
         $pelaporan->kronologi = $request->input('kronologi');
-    
+
         // Set user ID jika ini pelaporan baru
         if (!$request->id) {
             $pelaporan->id_user = auth()->id();
         }
-    
+
         // Simpan file surat jaminan
         if ($request->hasFile('surat_jaminan_file')) {
             $pelaporan->surat_jaminan = base64_encode(file_get_contents($request->file('surat_jaminan_file')->path()));
         }
-    
-        $pelaporan->save();
-    
-        // Kirim notifikasi ke semua admin
-        // Kirim notifikasi ke semua admin atau user
-if (auth()->user()->role === 'admin') {
-    $users = User::where('role', 'user')->get();
-    foreach ($users as $user) {
-        $user->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, true));
-    }
-} else {
-    $admins = User::where('role', 'admin')->get();
-    foreach ($admins as $admin) {
-        $admin->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, false));
-    }
-}
 
-        return redirect()->back()->with('success', 'LAPORAN BERHASIL DITAMBAHKAN !!!');
-    }
+        try {
+            $pelaporan->save();
 
+            // Kirim notifikasi ke semua admin
+            if (auth()->user()->role === 'admin') {
+                $users = User::where('role', 'user')->get();
+                foreach ($users as $user) {
+                    $user->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, true));
+                }
+            } else {
+                $admins = User::where('role', 'admin')->get();
+                foreach ($admins as $admin) {
+                    $admin->notify(new \App\Notifications\NewPelaporanNotification($pelaporan, false));
+                }
+            }
+
+            return redirect()->back()->with('success', 'LAPORAN BERHASIL DITAMBAHKAN !!!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'LAPORAN GAGAL DITAMBAHKAN !!!');
+        }
+    }
     public function download($id, $fileType)
     {
 

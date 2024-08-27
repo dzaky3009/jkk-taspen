@@ -21,17 +21,18 @@
                     }
                 }, 2500); 
             </script>
-            @elseif (session('gagal'))
+        @endif
 
-            <div id="dangerAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('gagal') }}
+        @if(session('error'))
+            <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="false">&times;</span>
                 </button>
             </div>
             <script>
                 setTimeout(function() {
-                    var alertElement = document.getElementById('dangerAlert');
+                    var alertElement = document.getElementById('errorAlert');
                     if (alertElement) {
                         var bootstrapAlert = new bootstrap.Alert(alertElement);
                         bootstrapAlert.close();
@@ -55,9 +56,7 @@
                         <th>NO HP</th>
                         <th>DIAGNOSA</th>
                         <th>KRONOLOGI</th>
-                
                         <th>HASIL VERIFIKASI</th>
-                
                         @if(auth()->user()->role === 'admin')
                         <th>TAMBAH HASIL VERIFIKASI</th>
                         @endif
@@ -74,7 +73,6 @@
                             <td>{{ $row->no_hp }}</td>
                             <td>{{ $row->diagnosa }}</td>
                             <td>{{ $row->kronologi }}</td>
-                            
                             @if($row->surat_jaminan)
                                 <td>
                                     <a href="/pelaporan/download/{{ $row->id }}/surat_jaminan" class="btn btn-primary" target="_blank">
@@ -82,11 +80,11 @@
                                     </a>
                                 </td>
                             @else
-                            <td>
-                                <a href="#" class="btn btn-danger" >
-                                   Belum Ada Hasil Verifikasi
-                                </a>
-                            </td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">
+                                       Belum Ada Hasil Verifikasi
+                                    </a>
+                                </td>
                             @endif
                             @if(auth()->user()->role === 'admin')
                                 <td>

@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-    <div class="container" style="margin-bottom: 27.5%">
+    <div class="container" style="margin-bottom: 22.5%">
         <!-- Outer Row -->
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-12 col-md-9">
@@ -39,6 +39,26 @@
                                             <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        @if (session('login error'))
+                                            <div id="successAlert" class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
+                                                {{ session('login error') }}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                    
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                setTimeout(function() {
+                                                    var alertElement = document.getElementById('successAlert');
+                                                    if (alertElement) {
+                                                        var bootstrapAlert = new bootstrap.Alert(alertElement);
+                                                        bootstrapAlert.close();
+                                                    }
+                                                }, 2500); 
+                                            });
+                                        </script>
                                     </form>
                                     {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
@@ -60,7 +80,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    {{-- @include('layouts.footer') --}}
+    @include('layouts.footer')
 </body>
 
 </html>
