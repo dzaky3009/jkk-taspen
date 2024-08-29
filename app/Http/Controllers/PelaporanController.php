@@ -42,7 +42,7 @@ class PelaporanController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Data gagal disimpan. Periksa kembali field yang harus diisi.');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'LAPORAN GAGAL DITAMBAHKAN !!!');
         }
 
         // Cek apakah ini update atau pelaporan baru
